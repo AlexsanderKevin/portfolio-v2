@@ -3,8 +3,6 @@
 
 :root {
   --font-sans: 'Montserrat', sans-serif;
-  --background: #180828;
-  --foreground: #F2EAFA;
 }
 
 @theme inline {
@@ -79,20 +77,20 @@
   --color-danger-900: #310413;
 
   --color-background: var(--color-purple-900);
-  --color-foreground: var(--color-purple-100);
+  --color-foreground: var(--color-purple-200);
 
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #180828;
-    --foreground: #ededed;
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
   }
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--color-foreground);
   font-family: Arial, Helvetica, sans-serif;
   font-family: var(--font-sans);
 }
