@@ -3,15 +3,16 @@
 import Image from "next/image";
 import { useState } from "react";
 import Button from "./Button";
-import { GithubLogoIcon } from "@phosphor-icons/react";
+import { BooksIcon, GithubLogoIcon, HouseIcon, IdentificationCardIcon, ListIcon, MailboxIcon, RocketLaunchIcon, XIcon } from "@phosphor-icons/react";
 
 export default function Header() {
+  const [ isOpen, setIsOpen ] = useState(true);
   const [ menuLinks ] = useState([
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Work", href: "#work" },
-    { name: "Contact", href: "#contact" }
+    { name: "Home", href: "#home", icon: <HouseIcon weight="duotone" size={24}/> },
+    { name: "About", href: "#about", icon: <IdentificationCardIcon weight="duotone" size={24}/> },
+    { name: "Skills", href: "#skills", icon: <BooksIcon weight="duotone" size={24}/> },
+    { name: "Work", href: "#work" , icon: <RocketLaunchIcon weight="duotone" size={24}/> },
+    { name: "Contact", href: "#contact", icon: <MailboxIcon weight="duotone" size={24}/> }
   ]);
 
   return (
@@ -21,15 +22,33 @@ export default function Header() {
         alt="Kevin's logo"
         width={40}
         height={40}
+        className="scale-85 sm:scale-100"
       />
 
-      <nav className="hidden sm:flex">
-        <ul className="flex gap-6 h-full">
+      <nav 
+        className={`
+          ${!isOpen ? "hidden" : "absolute"} bg-background h-screen w-full top-0 left-0 z-50
+          sm:flex  sm:h-auto sm:w-auto sm:static sm:bg-transparent
+        `}
+      >
+        <button 
+          className="text-xl p-3 sm:hidden absolute top-0 right-0 cursor-pointer hover:text-white active:text-white"
+          onClick={() => setIsOpen(false)}
+        >
+          <XIcon size={32} weight="bold"/>
+        </button>
+
+        <ul className="flex flex-col sm:flex-row pt-12 sm:pt-0 p-2">
 
           {menuLinks.map((link, index) => (
-            <li key={index} className="flex h-full items-center cursor-pointer transition-all duration-100">
-              <a href={link.href} className="relative block group">
-                <span className="group-hover:text-white transition-all duration-100 font-semibold">{link.name}</span>
+            <li key={index} className="flex h-14 py-2 px-4 sm:h-full items-center cursor-pointer transition-all duration-100 group hover:bg-purple-800 rounded-md">
+              <a href={link.href} className="relative block transition-all duration-100 font-semibold flex gap-3 items-center">
+                <span className="sm:hidden">
+                  {link.icon}
+                </span>
+                <span>
+                  {link.name}
+                </span>
               </a>
             </li>
           ))}
@@ -38,7 +57,14 @@ export default function Header() {
       </nav>
 
       <div>
-        <Button>
+        <button 
+          className="sm:hidden text-xl cursor-pointer hover:text-white active:text-white"
+          onClick={() => setIsOpen(true)}
+        >
+          <ListIcon size={32} weight="bold"/>
+        </button>
+
+        <Button className="hidden sm:block">
           V 2.0
           <GithubLogoIcon size={20} className="inline ml-2" weight="duotone"/>
         </Button>

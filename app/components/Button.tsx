@@ -2,17 +2,23 @@
 export default function Button(
   { 
     children, 
-    onclick 
+    onclick,
+    className = "",
   } : { 
     children: React.ReactNode, 
-    onclick?: () => void 
+    onclick?: () => void,
+    className?: string,
   }
 ) {
 
   return (
     <button
       onClick={onclick}
-      className="bg-purple-700 px-8 h-12 rounded-lg cursor-pointer font-semibold hover:bg-purple-600 transition-all duration-100 flex items-center gap-1"
+      className={`
+        bg-purple-700 px-6 h-10 rounded-lg cursor-pointer font-semibold transition-all duration-100 flex items-center gap-1 text-sm
+        hover:bg-purple-600 hover:text-white
+        ${className}
+      `}
     >
       {children}
     </button>
