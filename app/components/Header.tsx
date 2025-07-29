@@ -6,7 +6,7 @@ import Button from "./Button";
 import { BooksIcon, GithubLogoIcon, HouseIcon, IdentificationCardIcon, ListIcon, MailboxIcon, RocketLaunchIcon, XIcon } from "@phosphor-icons/react";
 
 export default function Header() {
-  const [ isOpen, setIsOpen ] = useState(true);
+  const [ isOpen, setIsOpen ] = useState(false);
   const [ menuLinks ] = useState([
     { name: "Home", href: "#home", icon: <HouseIcon weight="duotone" size={24}/> },
     { name: "About", href: "#about", icon: <IdentificationCardIcon weight="duotone" size={24}/> },
@@ -16,7 +16,7 @@ export default function Header() {
   ]);
 
   return (
-    <header className="flex justify-between w-full p-3">
+    <header className="flex justify-between w-full p-3" >
       <Image
         src="/logo.svg"
         alt="Kevin's logo"
@@ -24,7 +24,6 @@ export default function Header() {
         height={40}
         className="scale-85 sm:scale-100"
       />
-
       <nav 
         className={`
           ${!isOpen ? "hidden" : "absolute"} bg-background h-screen w-full top-0 left-0 z-50
@@ -41,8 +40,20 @@ export default function Header() {
         <ul className="flex flex-col sm:flex-row pt-12 sm:pt-0 p-2">
 
           {menuLinks.map((link, index) => (
-            <li key={index} className="flex h-14 py-2 px-4 sm:h-full items-center cursor-pointer transition-all duration-100 group hover:bg-purple-800 rounded-md">
-              <a href={link.href} className="relative block transition-all duration-100 font-semibold flex gap-3 items-center">
+            <li 
+              key={index} 
+              className={`
+                flex h-14 py-2 px-4 sm:h-full items-center cursor-pointer transition-all duration-100 group rounded-md
+                hover:bg-purple-700 active:bg-purple-800
+              `}
+            >
+              <a 
+                href={link.href} 
+                className="
+                  relative block transition-all duration-100 font-semibold flex gap-3 items-center 
+                  group-hover:text-white group-active:text-white
+                "
+              >
                 <span className="sm:hidden">
                   {link.icon}
                 </span>
