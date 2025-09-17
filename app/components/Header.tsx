@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import Button from "./Button";
 import { BooksIcon, GithubLogoIcon, HouseIcon, IdentificationCardIcon, ListIcon, MailboxIcon, RocketLaunchIcon, XIcon } from "@phosphor-icons/react";
 
 export default function Header() {
@@ -30,6 +29,7 @@ export default function Header() {
           sm:flex  sm:h-auto sm:w-auto sm:static sm:bg-transparent
         `}
       >
+        
         <button 
           className="text-xl p-3 sm:hidden absolute top-0 right-0 cursor-pointer hover:text-white active:text-white"
           onClick={() => setIsOpen(false)}
@@ -75,10 +75,21 @@ export default function Header() {
           <ListIcon size={32} weight="bold"/>
         </button>
 
-        <Button className="hidden sm:block">
+        <a 
+          href="https://github.com/AlexsanderKevin/portfolio-v2"
+          target="_blank"
+          className={`
+            hidden sm:flex
+            bg-purple-700 px-6 h-10 rounded-lg cursor-pointer font-semibold transition-all duration-100 items-center justify-center gap-1 text-sm
+            hover:bg-purple-600 hover:text-white
+          `}
+        >
           V 2.0
+
           <GithubLogoIcon size={20} className="inline ml-2" weight="duotone"/>
-        </Button>
+        </a>
+
+
       </div>
     </header>
   )
